@@ -1,5 +1,5 @@
-const jwt = require("jsonwebtoken");
 require("dotenv");
+const jwt = require("jsonwebtoken");
 
 module.exports = function (req, res, next) {
   // Get token from header
@@ -11,11 +11,11 @@ module.exports = function (req, res, next) {
   }
 
   try {
-    const decoded = jwt.verify(token, config.get("jwtSecret"));
+    const decoded = jwt.verify(token, process.env.secret);
 
     req.user = decoded.user;
-    nect();
+    next();
   } catch {
-    res.status(401).json({ msg: "Token in not valid" });
+    res.status(401).json({ token, msg: "Token in not valid" });
   }
 };
