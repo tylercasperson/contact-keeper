@@ -23,9 +23,15 @@ export default (state, action) => {
         ),
       };
     case SET_CURRENT:
-      return {};
+      return {
+        ...state,
+        current: action.payload,
+      };
     case CLEAR_CURRENT:
-      return {};
+      return {
+        ...state,
+        current: null,
+      };
     case UPDATE_CONTACT:
       return {};
     case FILTER_CONTACTS:
