@@ -33,7 +33,12 @@ export default (state, action) => {
         current: null,
       };
     case UPDATE_CONTACT:
-      return {};
+      return {
+        ...state,
+        contacts: state.contacts.map((contact) =>
+          contact.id === action.payload.id ? action.payload : contact
+        ),
+      };
     case FILTER_CONTACTS:
       return {};
     case CLEAR_FILTER:
