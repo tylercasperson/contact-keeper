@@ -18,7 +18,7 @@ const ContactForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    contact.Contaxt.addContact(contact);
+    contactContext.addContact(contact);
     setContact({
       name: '',
       email: '',
@@ -56,6 +56,7 @@ const ContactForm = () => {
         name='type'
         value='personal'
         checked={type === 'personal'}
+        onChange={onChange}
       />{' '}
       Personal{' '}
       <input
@@ -63,6 +64,7 @@ const ContactForm = () => {
         name='type'
         value='professional'
         checked={type === 'professional'}
+        onChange={onChange}
       />{' '}
       Professional{' '}
       <div>
