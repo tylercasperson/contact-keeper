@@ -61,9 +61,6 @@ const ContactState = (props) => {
         payload: res.data,
       });
     } catch (err) {
-      console.log(err.response.msg);
-      console.log(err);
-
       dispatch({
         type: CONTACT_ERROR,
         payload: err.response.msg,
@@ -72,7 +69,21 @@ const ContactState = (props) => {
   };
 
   // Delete Contact
-  const deleteContact = (id) => {
+  const deleteContact = async (id) => {
+    try {
+      await axios.delete(`/api/contacts/${id}`);
+
+      dispatch({
+        type: DELETE_CONTACT,
+        payload: id,
+      });
+    } catch (err) {
+      dispatch({
+        type: CONTACT_ERROR,
+        payload: err.response.msg,
+      });
+    }
+
     dispatch({ type: DELETE_CONTACT, payload: id });
   };
 
